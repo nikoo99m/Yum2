@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS recipe;
 CREATE TABLE recipe (
     id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
