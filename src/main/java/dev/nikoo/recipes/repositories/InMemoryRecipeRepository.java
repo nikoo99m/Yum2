@@ -95,4 +95,27 @@ public class InMemoryRecipeRepository implements RecipeRepository {
                 Arrays.asList("Tortilla", "Beef", "Lettuce", "Cheese", "Tomato"),
                 Arrays.asList("Cook beef.", "Prepare toppings.", "Assemble tacos.")));
     }
-}
+    public List<Recipe> findByTitle(String title) {
+        return recipes.stream()
+                .filter(recipe -> recipe.title().toLowerCase().contains(title))
+                .toList();
+    }
+
+    public List<Recipe> findByIngredient(String ingredient) {
+        return recipes.stream()
+                .filter(recipe -> recipe.ingredients().stream()
+                        .anyMatch(i -> i.toLowerCase().contains(ingredient)))
+                .toList();
+    }
+
+    public List<Recipe> findByCookingTimeLessThan(int maxCookingTime) {
+        return recipes.stream()
+                .filter(recipe -> recipe.cooking_time() <= maxCookingTime)
+                .toList();
+    }
+
+    public List<Recipe> findByFoodType(FoodType type) {
+        return recipes.stream()
+                .filter(recipe -> recipe.food_type() == type) // Compare using enum
+                .toList();
+    }}
