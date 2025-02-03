@@ -1,0 +1,85 @@
+[
+  {
+    "id": 1,
+    "title": "Persian Kebab",
+    "description": "Delicious grilled kebab",
+    "food_type": "FAST_FOOD",
+    "servings": 4,
+    "cooking_time": 30,
+    "ingredients": ["Beef", "Onion", "Tomato", "Bell Pepper"],
+    "instructions": ["Mix ingredients", "Grill on medium heat"]
+  },
+  {
+    "id": 2,
+    "title": "Spaghetti Bolognese",
+    "description": "Italian pasta with meat sauce",
+    "food_type": "SPECIAL_CUISINE",
+    "servings": 2,
+    "cooking_time": 45,
+    "ingredients": ["Spaghetti", "Beef", "Tomato Sauce", "Onion", "Garlic"],
+    "instructions": ["Cook pasta", "Prepare sauce", "Combine pasta and sauce"]
+  },
+  {
+    "id": 3,
+    "title": "Tacos",
+    "description": "Mexican tacos with beef and veggies",
+    "food_type": "FAST_FOOD",
+    "servings": 3,
+    "cooking_time": 20,
+    "ingredients": ["Tortilla", "Beef", "Lettuce", "Cheese", "Tomato"],
+    "instructions": ["Cook beef", "Prepare toppings", "Assemble tacos"]
+  },
+  {
+    "id": 4,
+    "title": "Chicken Curry",
+    "description": "Rich and flavourful chicken curry",
+    "food_type": "SPECIAL_CUISINE",
+    "servings": 5,
+    "cooking_time": 60,
+    "ingredients": ["Chicken", "Coconut Milk", "Curry Powder", "Onion", "Garlic"],
+    "instructions": ["Cook chicken", "Prepare curry base", "Simmer chicken in sauce"]
+  },
+
+    {
+      "id": 5,
+      "title": "Persian Kebab",
+      "description": "Delicious grilled kebab",
+      "food_type": "FAST_FOOD",
+      "servings": 4,
+      "cooking_time": 30,
+      "ingredients": ["Beef", "Onion", "Tomato", "Bell Pepper"],
+      "instructions": ["Mix ingredients", "Grill on medium heat"]
+    },
+    {
+      "id": 6,
+      "title": "Spaghetti Bolognese",
+      "description": "Italian pasta with meat sauce",
+      "food_type": "SPECIAL_CUISINE",
+      "servings": 2,
+      "cooking_time": 87,
+      "ingredients": ["Spaghetti", "Beef", "Tomato Sauce", "Onion", "Garlic"],
+      "instructions": ["Cook pasta", "Prepare sauce", "Combine pasta and sauce"]
+    },
+    {
+      "id": 7,
+      "title": "Tacos",
+      "description": "Mexican tacos with beef and veggies",
+      "food_type": "FAST_FOOD",
+      "servings": 3,
+      "cooking_time": 32,
+      "ingredients": ["Tortilla", "Beef", "Lettuce", "Cheese", "Tomato"],
+      "instructions": ["Cook beef", "Prepare toppings", "Assemble tacos"]
+    },
+    {
+      "id": 8,
+      "title": "Chicken Curry",
+      "description": "Rich and flavourful chicken curry",
+      "food_type": "SPECIAL_CUISINE",
+      "servings": 5,
+      "cooking_time": 19,
+      "ingredients": ["Chicken", "Coconut Milk", "Curry Powder", "Onion", "Garlic"],
+      "instructions": ["Cook chicken", "Prepare curry base", "Simmer chicken in sauce"]
+    }
+  ]
+
+
