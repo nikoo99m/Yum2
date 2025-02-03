@@ -61,40 +61,13 @@ public class InMemoryRecipeRepository implements RecipeRepository {
     public void saveAll(List<Recipe> recipes) {
         recipes.stream().forEach(recipe -> create(recipe));
     }
+
     @PostConstruct
     private void init() {
         addSampleRecipes();
         log.info("In-Memory Storage initialised with {} sample recipes.", recipes.size());
     }
 
-    private void addSampleRecipes() {
-        recipes.add(new Recipe(1,
-                "Persian Kebab",
-                "Delicious grilled kebab",
-                FoodType.FAST_FOOD,
-                4,
-                30,
-                Arrays.asList("Beef", "Onion", "Tomato", "Bell Pepper"),
-                Arrays.asList("Mix ingredients.", "Grill.")));
-
-        recipes.add(new Recipe(2,
-                "Spaghetti Bolognese",
-                "Italian pasta with meat sauce",
-                FoodType.SEPECIAL_CUISINE,
-                2,
-                45,
-                Arrays.asList("Spaghetti", "Beef", "Tomato Sauce", "Onion", "Garlic"),
-                Arrays.asList("Cook pasta.", "Prepare sauce.", "Combine.")));
-
-        recipes.add(new Recipe(3,
-                "Tacos",
-                "Mexican tacos with beef and veggies",
-                FoodType.FAST_FOOD,
-                3,
-                20,
-                Arrays.asList("Tortilla", "Beef", "Lettuce", "Cheese", "Tomato"),
-                Arrays.asList("Cook beef.", "Prepare toppings.", "Assemble tacos.")));
-    }
     public List<Recipe> findByTitle(String title) {
         return recipes.stream()
                 .filter(recipe -> recipe.title().toLowerCase().contains(title))
@@ -116,6 +89,35 @@ public class InMemoryRecipeRepository implements RecipeRepository {
 
     public List<Recipe> findByFoodType(FoodType type) {
         return recipes.stream()
-                .filter(recipe -> recipe.food_type() == type) // Compare using enum
+                .filter(recipe -> recipe.food_type() == type)
                 .toList();
-    }}
+    }
+    private void addSampleRecipes() {
+        recipes.add(new Recipe(1,
+                "Persian Kebab",
+                "Delicious grilled kebab",
+                FoodType.FAST_FOOD,
+                4,
+                30,
+                Arrays.asList("Beef", "Onion", "Tomato", "Bell Pepper"),
+                Arrays.asList("Mix ingredients.", "Grill.")));
+
+        recipes.add(new Recipe(2,
+                "Spaghetti Bolognese",
+                "Italian pasta with meat sauce",
+                FoodType.SPECIAL_CUISINE,
+                2,
+                45,
+                Arrays.asList("Spaghetti", "Beef", "Tomato Sauce", "Onion", "Garlic"),
+                Arrays.asList("Cook pasta.", "Prepare sauce.", "Combine.")));
+
+        recipes.add(new Recipe(3,
+                "Tacos",
+                "Mexican tacos with beef and veggies",
+                FoodType.FAST_FOOD,
+                3,
+                20,
+                Arrays.asList("Tortilla", "Beef", "Lettuce", "Cheese", "Tomato"),
+                Arrays.asList("Cook beef.", "Prepare toppings.", "Assemble tacos.")));
+    }
+}

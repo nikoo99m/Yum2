@@ -1,5 +1,5 @@
 package dev.nikoo.recipes.models;
 
 public enum FoodType {
-FAST_FOOD, SEPECIAL_CUISINE
+FAST_FOOD, SPECIAL_CUISINE
 }

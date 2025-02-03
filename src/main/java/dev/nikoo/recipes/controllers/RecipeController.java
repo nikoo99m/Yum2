@@ -3,6 +3,7 @@ package dev.nikoo.recipes.controllers;
 import dev.nikoo.recipes.models.FoodType;
 import dev.nikoo.recipes.models.Recipe;
 import dev.nikoo.recipes.repositories.InMemoryRecipeRepository;
+import dev.nikoo.recipes.repositories.JdbcRecipeRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +15,10 @@ import java.util.Optional;
     @RestController
     @RequestMapping("/api/recipes")
     public class RecipeController {
-        private final InMemoryRecipeRepository recipeRepository;
+        private final JdbcRecipeRepository recipeRepository;
 
 
-        public RecipeController(InMemoryRecipeRepository recipeRepository) {
+        public RecipeController(JdbcRecipeRepository recipeRepository) {
             this.recipeRepository = recipeRepository;
         }
 
