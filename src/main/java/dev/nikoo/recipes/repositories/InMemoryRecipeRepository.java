@@ -70,14 +70,13 @@ public class InMemoryRecipeRepository implements RecipeRepository {
 
     public List<Recipe> findByTitle(String title) {
         return recipes.stream()
-                .filter(recipe -> recipe.title().toLowerCase().contains(title))
+                .filter(recipe -> recipe.title().toLowerCase().contains(title.toLowerCase())) // Normalize both
                 .toList();
     }
-
     public List<Recipe> findByIngredient(String ingredient) {
         return recipes.stream()
                 .filter(recipe -> recipe.ingredients().stream()
-                        .anyMatch(i -> i.toLowerCase().contains(ingredient)))
+                        .anyMatch(i -> i.toLowerCase().contains(ingredient.toLowerCase()))) // Normalize both
                 .toList();
     }
 
@@ -92,6 +91,7 @@ public class InMemoryRecipeRepository implements RecipeRepository {
                 .filter(recipe -> recipe.food_type() == type)
                 .toList();
     }
+    @PostConstruct
     private void addSampleRecipes() {
         recipes.add(new Recipe(1,
                 "Persian Kebab",
