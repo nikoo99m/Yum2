@@ -1,17 +1,9 @@
-version: '3.8'
-services:
-  db:
-    image: postgres:latest
-    restart: always
-    container_name: withoutuser2
-    environment:
-      POSTGRES_USER: nikoo
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: withoutuser2
-    ports:
-      - "5432:5432"
-    volumes:
-      - pg_data:/var/lib/postgresql/withoutuser2
-
-volumes:
-  pg_data:
+spring:
+  datasource:
+    url: postgresql://postgres:hADFaFVqIstSackIvAZsqxGUWpHJqYTa@postgres.railway.internal:5432/railway
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  sql:
+    init:
+      mode: always
