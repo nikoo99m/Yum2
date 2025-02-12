@@ -15,10 +15,10 @@ import java.util.Optional;
     @RestController
     @RequestMapping("/api/recipes")
     public class RecipeController {
-        private final InMemoryRecipeRepository recipeRepository;
+        private final JdbcRecipeRepository recipeRepository;
 
 
-        public RecipeController(InMemoryRecipeRepository recipeRepository) {
+        public RecipeController(JdbcRecipeRepository recipeRepository) {
             this.recipeRepository = recipeRepository;
         }
 
