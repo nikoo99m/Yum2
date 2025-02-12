@@ -1,6 +1,8 @@
 spring:
   datasource:
-    url: postgresql://postgres:hADFaFVqIstSackIvAZsqxGUWpHJqYTa@postgres.railway.internal:5432/railway
+    url: jdbc:postgresql://postgres.railway.internal:5432/railway
+    username: postgres
+    password: hADFaFVqIstSackIvAZsqxGUWpHJqYTa
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
