@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
     @RestController
+    @CrossOrigin(origins = "*")
     @RequestMapping("/api/recipes")
     public class RecipeController {
         private final JdbcRecipeRepository recipeRepository;
