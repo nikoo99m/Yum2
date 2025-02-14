@@ -10,7 +10,7 @@ public interface RecipeRepository {
 
     Optional<Recipe> findById(Integer id);
 
-    void create(Recipe recipe);
+    Recipe create(Recipe recipe);
 
     void update(Recipe recipe, Integer id);
 

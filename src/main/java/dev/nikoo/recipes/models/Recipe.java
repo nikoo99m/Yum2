@@ -10,7 +10,8 @@ public record Recipe(
         Integer servings,
         Integer cooking_time,
         List<String>ingredients,
-        List<String>instructions
+        List<String>instructions,
+        String image
 ){}
 
 

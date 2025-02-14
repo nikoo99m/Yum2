@@ -9,3 +9,13 @@ spring:
   sql:
     init:
       mode: always
+
+#services:
+#  postgres:
+#    image: 'postgres:latest'
+#    environment:
+#      - 'POSTGRES_DB=recipes'
+#      - 'POSTGRES_PASSWORD=password'
+#      - 'POSTGRES_USER=nikoo'
+#    ports:
+#      - '5432:5432'

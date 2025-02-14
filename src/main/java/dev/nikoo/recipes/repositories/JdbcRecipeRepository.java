@@ -3,6 +3,8 @@ package dev.nikoo.recipes.repositories;
 import dev.nikoo.recipes.models.FoodType;
 import dev.nikoo.recipes.models.Recipe;
 import org.springframework.jdbc.core.simple.JdbcClient;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
@@ -29,7 +31,8 @@ public class JdbcRecipeRepository implements RecipeRepository {
                         rs.getInt("servings"),
                         rs.getInt("cooking_time"),
                         Arrays.asList(rs.getString("ingredients").split(", ")),
-                        Arrays.asList(rs.getString("instructions").split(", "))
+                        Arrays.asList(rs.getString("instructions").split(", ")),
+                        rs.getString("image")
                 ))
                 .list();
     }
@@ -45,30 +48,18 @@ public class JdbcRecipeRepository implements RecipeRepository {
                         rs.getInt("servings"),
                         rs.getInt("cooking_time"),
                         Arrays.asList(rs.getString("ingredients").split(", ")),
-                        Arrays.asList(rs.getString("instructions").split(", "))
+                        Arrays.asList(rs.getString("instructions").split(", ")),
+                        rs.getString("image")
                 ))
                 .optional();
     }
 
-    public void create(Recipe recipe) {
-        var updated = jdbcClient.sql("INSERT INTO Recipe(id, title, description, food_type, servings, cooking_time, ingredients, instructions) values(?,?,?,?,?,?,?,?)")
-                .params(
-                        recipe.id(),
-                        recipe.title(),
-                        recipe.description(),
-                        recipe.food_type().name(),
-                        recipe.servings(),
-                        recipe.cooking_time(),
-                        String.join(", ", recipe.ingredients()),
-                        String.join(", ", recipe.instructions())
-                )
-                .update();
+    public Recipe create(Recipe recipe) {
+        String sql = "INSERT INTO Recipe (title, description, food_type, servings, cooking_time, ingredients, instructions, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        Assert.state(updated == 1, "Failed to create recipe " + recipe.title());
-    }
+        KeyHolder keyHolder = new GeneratedKeyHolder();
 
-    public void update(Recipe recipe, Integer id) {
-        var updated = jdbcClient.sql("UPDATE recipe SET title = ?, description = ?, food_type = ?, servings = ?, cooking_time = ?, ingredients = ?, instructions = ? WHERE id = ?")
+        jdbcClient.sql(sql)
                 .params(
                         recipe.title(),
                         recipe.description(),
@@ -77,6 +68,38 @@ public class JdbcRecipeRepository implements RecipeRepository {
                         recipe.cooking_time(),
                         String.join(", ", recipe.ingredients()),
                         String.join(", ", recipe.instructions()),
+                        recipe.image()
+                )
+                .update(keyHolder, new String[]{"id"}); // ✅ Explicitly tell Spring to return only "id"
+
+        if (keyHolder.getKey() != null) {
+            return new Recipe(
+                    keyHolder.getKey().intValue(),  // Use auto-generated ID
+                    recipe.title(),
+                    recipe.description(),
+                    recipe.food_type(),
+                    recipe.servings(),
+                    recipe.cooking_time(),
+                    recipe.ingredients(),
+                    recipe.instructions(),
+                    recipe.image()
+            );
+        }
+
+        throw new IllegalStateException("Failed to create recipe: " + recipe.title());
+    }
+
+    public void update(Recipe recipe, Integer id) {
+        var updated = jdbcClient.sql("UPDATE recipe SET title = ?, description = ?, food_type = ?, servings = ?, cooking_time = ?, ingredients = ?, instructions = ?, image = ? WHERE id = ?")
+                .params(
+                        recipe.title(),
+                        recipe.description(),
+                        recipe.food_type().name(),
+                        recipe.servings(),
+                        recipe.cooking_time(),
+                        String.join(", ", recipe.ingredients()),
+                        String.join(", ", recipe.instructions()),
+                        recipe.image(),
                         id
                 )
                 .update();
@@ -111,7 +134,9 @@ public class JdbcRecipeRepository implements RecipeRepository {
                         rs.getInt("servings"),
                         rs.getInt("cooking_time"),
                         Arrays.asList(rs.getString("ingredients").split(", ")),
-                        Arrays.asList(rs.getString("instructions").split(", "))
+                        Arrays.asList(rs.getString("instructions").split(", ")),
+                        rs.getString("image")
+
                 ))
                 .list();
     }
@@ -127,7 +152,8 @@ public class JdbcRecipeRepository implements RecipeRepository {
                         rs.getInt("servings"),
                         rs.getInt("cooking_time"),
                         Arrays.asList(rs.getString("ingredients").split(", ")),
-                        Arrays.asList(rs.getString("instructions").split(", "))
+                        Arrays.asList(rs.getString("instructions").split(", ")),
+                        rs.getString("image")
                 ))
                 .list();
     }
@@ -143,7 +169,8 @@ public class JdbcRecipeRepository implements RecipeRepository {
                         rs.getInt("servings"),
                         rs.getInt("cooking_time"),
                         Arrays.asList(rs.getString("ingredients").split(", ")),
-                        Arrays.asList(rs.getString("instructions").split(", "))
+                        Arrays.asList(rs.getString("instructions").split(", ")),
+                        rs.getString("image")
                 ))
                 .list();
     }
@@ -159,7 +186,8 @@ public class JdbcRecipeRepository implements RecipeRepository {
                         rs.getInt("servings"),
                         rs.getInt("cooking_time"),
                         Arrays.asList(rs.getString("ingredients").split(", ")),
-                        Arrays.asList(rs.getString("instructions").split(", "))
+                        Arrays.asList(rs.getString("instructions").split(", ")),
+                        rs.getString("image")
                 ))
                 .list();
     }
